@@ -18,5 +18,5 @@ def convert(source_filename, destination_filename):
 
 
 if __name__ == '__main__':
-	convert('koinley-2021.pdf', 'output.csv')
+	convert('dumb-pdf.pdf', 'output.csv')
 
