@@ -7,11 +7,11 @@ header_names = ['Date', 'Asset', 'Amount', 'Value (USD)', 'Type', 'Description']
 def convert(source_filename, destination_filename, page_start, page_stop):
 	df_list = read_pdf(source_filename, pages=list(range(page_start, page_stop+1)))
 	for df in df_list:
-		try:
-			df.columns = header_names
-		except Exception as e:
+		if len(df.columns) < len(header_names):
 			df.columns = header_names[:-1]
 			df['Description'] = ['' for _ in df['Date']]
+		else:
+			df.columns = header_names
 	df = pd.concat(df_list)
 	df.to_csv(destination_filename)
 
